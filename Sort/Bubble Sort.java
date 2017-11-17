@@ -5,21 +5,25 @@
  */
 package pers.sort_bubble;
 
+//ref to array a, number of data array
 class ArrayBub {
-	private long[] a;		//ref to array a
-	private int nElems;		//number of data array
+	private long[] a;
+	private int nElems;
 //..........................
-	public ArrayBub(int max) {		//constructor
+	//constructor
+	public ArrayBub(int max) {
 		a = new long[max];			//create the array
 		nElems = 0;					//no items yet
 	}
 //..........................
-	public void insert(long value) {		//put element into array
+	//put elements into array
+	public void insert(long value) {		
 		a[nElems] = value;					//insert it
 		nElems++;							//increment size
 	}
 //..........................
-	public void display() {					//display array contents
+	//display array contents
+	public void display() {
 		for (int j = 0; j < nElems; j++) {		//for each element
 			System.out.print(a[j] + "\t");		//display it
 		}
@@ -38,6 +42,7 @@ class ArrayBub {
 		}
 	}
 //..........................
+	//function swap(int, int)
 	private void swap(int one, int two) {
 		long temp;
 		temp = a[one];
