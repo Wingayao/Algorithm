@@ -1,0 +1,99 @@
+/*
+ * objectSort.java
+ * demonstrate sorting objects (use insertion sort)
+ */
+public class Person {
+    private String firstname;
+    private String lastname;
+    private int age;
+    
+    // constructor
+    public Person(String lastname, String firstname, int age) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.age = age;
+    }
+    
+    // get lastname
+    public String getLast() {
+        return lastname;
+    }
+    
+    // display
+    public void displayPerson() {
+        System.out.print(" Lastname:" + lastname);
+        System.out.print(" Firstname:" + firstname);
+        System.out.print(" Age:" + age);
+    }
+}
+//end class Person
+
+
+public class ArrayInOb {
+    private Person[] a;
+    private int nElems;
+    
+    // constructor
+    public ArrayInOb(int max) {
+        a = new Person[max];
+        nElems = 0;
+    }
+    
+    // put element to array
+    public void insert(String lastname, String firstname, int age) {
+        a[nElems] = new Person(lastname, firstname, age);
+        nElems++;
+    }
+    
+    // display
+    public void display() {
+        for (int j = 0; j < nElems; j++) {
+            a[j].displayPerson();
+            System.out.println("");
+        }
+    }
+    
+    // insert sort
+    public void insertSort() {
+        int in, out;
+        
+        for (out = 1; out < nElems; out++) {
+            Person temp = a[out];
+            in = out;
+            
+            int compare = a[in-1].getLast().compareTo(temp.getLast());
+            while (in > 0 && compare > 0) {
+                // shift item to right
+                a[in] = a[in-1];
+                // go left one position
+                --in;           
+            }
+            // insert marked item
+            a[in] = temp;
+        }
+    }
+}
+// end class ArrayInOb
+
+
+public class ObjectSortApp {
+    
+    public static void main(String[] args) {
+        int maxSize = 100;
+        ArrayInOb arr;
+        arr = new ArrayInOb(maxSize);
+        
+        // put elements into array
+        arr.insert("Evans", "Zatty", 24);
+        arr.insert("Bvans", "Aatty", 21);
+        arr.insert("Avans", "Yatty", 5);
+        arr.insert("Tvans", "Xatty", 99);
+        
+        System.out.println("Before Sorting:");
+        arr.display();
+        
+        System.out.println("After Sorting:");
+        arr.insertSort();
+        arr.display();
+    }
+}
