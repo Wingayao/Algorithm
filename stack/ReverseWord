@@ -1,0 +1,86 @@
+public class Reverse {
+    private String input;
+    private String output;
+    
+    public Reverse(String in) {
+        input = in;
+    }
+    
+    public String doRev() {
+        int stackSize = input.length();
+        StackX theStack = new StackX(stackSize);
+        
+        for (int j = 0; j < input.length(); j++) {
+            char ch = input.charAt(j);
+            theStack.push(ch);
+        }
+        
+        output = "";
+        while(!theStack.isEmpty()) {
+            char ch = theStack.pop();
+            output = output + ch;
+        }
+        
+        return output;
+        
+    }
+}
+// -----------分界线-----------
+public class StackX {
+    private int maxSize;
+    private char[] stackArray;
+    private int top;
+    
+    public StackX(int max) {
+        maxSize = max;
+        stackArray = new char[maxSize];
+        top = -1;
+    }
+    
+    public void push(char j) {
+        stackArray[++top] = j;
+    }
+    
+    public char pop() {
+        return stackArray[top--];
+    }
+    
+    public char peek() {
+        return stackArray[top];
+    }
+    
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+    
+}
+// -----------分界线-----------
+import java.util.Scanner;
+
+public class ReverseApp {
+    
+    public static Scanner sc = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        String input;
+        String output;
+        
+        while(true) {
+            System.out.println("Please Enter a string:");
+            input = getString();
+            
+            if(input.equals("END")) {
+                break;
+            }
+            
+            Reverse theReverser = new Reverse(input);
+            output = theReverser.doRev();
+            System.out.println("Reversed:" + output);
+            }
+        sc.close();
+    }
+    
+    public static String getString(){
+        return sc.next();
+    }
+}
